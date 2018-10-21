@@ -4,24 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Lands.Views.LoginPage"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="Login">
+    Title="Lands">
     <!--TODO 011 Al instanciar la login page el va a buscar el binding en Main,
     que es un recurso que esta en el diccionario de recursos que se llama Locator-->
     <ContentPage.Content>
         <ScrollView>
             <StackLayout
-                Padding="10,20,10,5">
+                Padding="5">
                 <Label 
                     FontAttributes="Bold"
                     FontSize="Large"
-                    Text="Lands"
                     HorizontalOptions="CenterAndExpand" />
                 <Image
                     Source="onu"
                     WidthRequest="200"/>
 
                 <Grid
-                    Margin="0,20">
+                    Margin="10,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
@@ -51,9 +50,11 @@
                         Placeholder="Enter your password...">
                     </Entry>
                 </Grid>
-
+                <ActivityIndicator>
+                </ActivityIndicator>
                 <StackLayout
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    Margin="10,0">
                     <Label
                         HorizontalOptions="StartAndExpand"
                         Text="Remember in this device"
@@ -63,16 +64,20 @@
                         HorizontalOptions="End">
                     </Switch>
                 </StackLayout>
-
-                <ActivityIndicator>
-                </ActivityIndicator>
-
+                <Label
+                    HorizontalOptions="Center"
+                    Margin="10,0"
+                    Text="Forgot your password"
+                    TextColor="Blue">
+                </Label>
                 <StackLayout
+                    Orientation="Horizontal"
                     Margin="40,0">
                     <Button
                         BackgroundColor="Navy"
                         BorderRadius="25"
                         HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
                         Text="Login"
                         TextColor="White">
                     </Button>
@@ -80,6 +85,7 @@
                         BackgroundColor="Purple"
                         BorderRadius="25"
                         HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
                         Text="Register"
                         TextColor="White">
                     </Button>
