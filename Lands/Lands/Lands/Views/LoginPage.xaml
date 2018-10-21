@@ -8,19 +8,17 @@
     <!--TODO 011 Al instanciar la login page el va a buscar el binding en Main,
     que es un recurso que esta en el diccionario de recursos que se llama Locator-->
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView
+            BindingContext="{Binding Login}">
             <StackLayout
                 Padding="5">
-                <Label 
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    HorizontalOptions="CenterAndExpand" />
                 <Image
                     Source="onu"
                     WidthRequest="200"/>
 
                 <Grid
-                    Margin="10,0">
+                    Margin="10,0"
+                    VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
@@ -35,6 +33,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Keyboard="Email"
+                        Text="{Binding Email, Mode=TwoWay}"
                         Placeholder="Enter your email...">
                     </Entry>
                     <Label
@@ -47,35 +46,43 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="Enter your password...">
+                        Placeholder="Enter your password..."
+                        Text="{Binding Password, Mode=TwoWay}">
                     </Entry>
                 </Grid>
-                <ActivityIndicator>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
                 <StackLayout
                     Orientation="Horizontal"
-                    Margin="10,0">
+                    Margin="10,0"
+                    VerticalOptions="StartAndExpand">
                     <Label
                         HorizontalOptions="StartAndExpand"
                         Text="Remember in this device"
                         VerticalOptions="Center">
                     </Label>
                     <Switch
-                        HorizontalOptions="End">
+                        HorizontalOptions="End"
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}">
                     </Switch>
                 </StackLayout>
                 <Label
                     HorizontalOptions="Center"
                     Margin="10,0"
                     Text="Forgot your password"
-                    TextColor="Blue">
+                    TextColor="Blue"
+                    VerticalOptions="CenterAndExpand">
                 </Label>
                 <StackLayout
                     Orientation="Horizontal"
-                    Margin="40,0">
+                    Margin="40,0"
+                    VerticalOptions="CenterAndExpand">
                     <Button
                         BackgroundColor="Navy"
                         BorderRadius="25"
+                        Command="{Binding LoginCommand}"
                         HeightRequest="50"
                         HorizontalOptions="FillAndExpand"
                         Text="Login"
@@ -84,6 +91,7 @@
                     <Button
                         BackgroundColor="Purple"
                         BorderRadius="25"
+                        Command="{Binding RegisterCommand}"
                         HeightRequest="50"
                         HorizontalOptions="FillAndExpand"
                         Text="Register"
@@ -92,7 +100,8 @@
                 </StackLayout>
                 <StackLayout
                     HorizontalOptions="CenterAndExpand"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal"
+                    VerticalOptions="EndAndExpand">
                     <Image
                         Source="facebook_logo"
                         WidthRequest="100"/>

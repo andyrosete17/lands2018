@@ -8,7 +8,7 @@
         public MainViewModel Main { get; set; }
         #endregion
 
-        #region Constructurs
+        #region Constructors
         public InstanceLocator()
         {
             this.Main = new MainViewModel();
