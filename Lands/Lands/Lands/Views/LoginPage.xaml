@@ -85,6 +85,7 @@
                         Command="{Binding LoginCommand}"
                         HeightRequest="50"
                         HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding isEnable, Mode=TwoWay}"
                         Text="Login"
                         TextColor="White">
                     </Button>
@@ -94,6 +95,7 @@
                         Command="{Binding RegisterCommand}"
                         HeightRequest="50"
                         HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding isEnable, Mode=TwoWay}"
                         Text="Register"
                         TextColor="White">
                     </Button>
