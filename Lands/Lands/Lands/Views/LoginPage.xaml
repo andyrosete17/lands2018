@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Lands.Views.LoginPage"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="Lands">
+    Title="Login">
     <!--TODO 011 Al instanciar la login page el va a buscar el binding en Main,
     que es un recurso que esta en el diccionario de recursos que se llama Locator-->
     <ContentPage.Content>

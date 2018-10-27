@@ -2,6 +2,7 @@
 namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Lands.Views;
     using System.ComponentModel;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -9,8 +10,12 @@ namespace Lands.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         #region Properties
-        public string Email {get;set;}
         public bool IsRemembered { get; set; }
+        public string Email
+        {
+            get { return this.email; }
+            set { SetValue(ref this.email, value); }
+        }
         public string Password
         {
             get { return this.password; }
@@ -29,6 +34,7 @@ namespace Lands.ViewModels
         #endregion
 
         #region Attributes
+        private string email;
         private string password;
         private bool isRunning;
         private bool isEnable;
@@ -50,21 +56,23 @@ namespace Lands.ViewModels
         {
             this.IsRemembered = true;
             this.IsEnable = true;
+            this.Email = "andyrosete17@gmail.com";
+            this.Password = "1234";
         }
 
         #endregion
 
+        #region CommandsImplementation
         private async void Login()
         {
+
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
-                    "You mus enter an email",
+                    "You must enter an email",
                     "Accept"
                     );
-                this.IsRunning = true;
-                this.IsEnable = false;
                 return;
             }
             if (string.IsNullOrEmpty(this.Password))
@@ -74,14 +82,39 @@ namespace Lands.ViewModels
                     "You must enter a password",
                     "Accept"
                     );
-                this.IsRunning = true;
-                this.IsEnable = false;
+                return;
+            }
+
+            this.IsRunning = true;
+            this.IsEnable = false;
+
+            if (this.Email != "andyrosete17@gmail.com" ||
+                this.Password != "1234")
+            {
+                this.IsRunning = false;
+                this.IsEnable = true;
+                await Application.Current.MainPage.DisplayAlert(
+                     "Error",
+                     "Email or password incorrect",
+                     "Accept"
+                     );
+                this.Password = string.Empty;
                 return;
             }
 
             this.IsRunning = false;
             this.IsEnable = true;
 
+            this.Email = string.Empty;
+            this.password = string.Empty;
+
+            /// TODO 023 De esta forma antes de pintar la lands page se establece la 
+            /// LandsViewmodel alineada a la vista.
+            MainViewModel.GetInstance().Lands = new LandsViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
         }
+
+        #endregion
     }
 }
