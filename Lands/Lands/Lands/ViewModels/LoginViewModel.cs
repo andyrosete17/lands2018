@@ -3,7 +3,6 @@ namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
     using Lands.Views;
-    using System.ComponentModel;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -106,7 +105,7 @@ namespace Lands.ViewModels
             this.IsEnable = true;
 
             this.Email = string.Empty;
-            this.password = string.Empty;
+            this.Password = string.Empty;
 
             /// TODO 023 De esta forma antes de pintar la lands page se establece la 
             /// LandsViewmodel alineada a la vista.
