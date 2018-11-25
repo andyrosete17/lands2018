@@ -1,46 +1,64 @@
-﻿
-namespace Lands.ViewModels
+﻿namespace Lands.ViewModels
 {
-    using Services;
+    using GalaSoft.MvvmLight.Command;
     using Models;
-    using System;
-    using System.Collections.ObjectModel;
-    using Xamarin.Forms;
+    using Services;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
+    using Xamarin.Forms;
 
     public class LandsViewModel : BaseViewModel
     {
         #region Services
+
         private ApiService apiService;
-        #endregion
+
+        #endregion Services
 
         #region Attributes
+
         private ObservableCollection<Land> lands;
-        #endregion
+        private bool isRefreshing;
+
+        #endregion Attributes
 
         #region Properties
+
         public ObservableCollection<Land> Lands
         {
-            get { return this.Lands;}
-            set { SetValue(ref this.lands, value);}
+            get { return this.lands; }
+            set { SetValue(ref this.lands, value); }
         }
-        #endregion
+
+        public bool IsRefreshing
+        {
+            get { return this.isRefreshing; }
+            set { SetValue(ref this.isRefreshing, value); }
+        }
+
+        #endregion Properties
 
         #region Constructors
+
         public LandsViewModel()
         {
             this.apiService = new ApiService();
             this.LoadLands();
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Methods
+
         private async void LoadLands()
         {
+            this.IsRefreshing = true;
             var connection = await apiService.CheckConnection();
 
             if (!connection.IsSuccess)
             {
+                this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
                                    "Error",
                                    connection.Message,
@@ -56,16 +74,28 @@ namespace Lands.ViewModels
 
             if (!response.IsSuccess)
             {
+                this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
                     response.Message,
                     "Accept");
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
 
             var list = (List<Land>)response.Result;
             this.Lands = new ObservableCollection<Land>(list);
+            this.IsRefreshing = false;
         }
-        #endregion
 
+        #endregion Methods
+
+        #region Commands
+
+        public ICommand RefreshCommand
+        {
+            get { return new RelayCommand(LoadLands);}
+        }
+
+        #endregion Commands
     }
 }

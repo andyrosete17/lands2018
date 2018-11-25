@@ -47,8 +47,10 @@
         {
             try
             {
-                var client = new HttpClient();
-                client.BaseAddress = new Uri(urlBase);
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
                 var response = await client.PostAsync(
                     "Token",
                     new StringContent(string.Format(
@@ -124,8 +126,10 @@
         {
             try
             {
-                var client = new HttpClient();
-                client.BaseAddress = new Uri(urlBase);
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
                 var url = string.Format("{0}{1}", servicePrefix, controller);
                 var response = await client.GetAsync(url);
                 var result = await response.Content.ReadAsStringAsync();
@@ -311,8 +315,10 @@
                     request,
                     Encoding.UTF8,
                     "application/json");
-                var client = new HttpClient();
-                client.BaseAddress = new Uri(urlBase);
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
                 var url = string.Format("{0}{1}", servicePrefix, controller);
                 var response = await client.PostAsync(url, content);
 
@@ -406,8 +412,10 @@
         {
             try
             {
-                var client = new HttpClient();
-                client.BaseAddress = new Uri(urlBase);
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
                 client.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue(tokenType, accessToken);
                 var url = string.Format(
