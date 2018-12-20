@@ -3,22 +3,28 @@
     public class MainViewModel
     {
         #region ViewModels
+
         public LoginViewModel Login { get; set; }
         public LandsViewModel Lands { get; set; }
-        #endregion
+        public LandViewModel Land { get; set; }
+
+        #endregion ViewModels
 
         #region Constructors
+
         public MainViewModel()
         {
             /// TODO 022 al crear la clase se inicializa la instancia
             instance = this;
             this.Login = new LoginViewModel();
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Singleton
+
         /// <summary>
-        /// TODO 020 Para el singleton se crea una instancia estática 
+        /// TODO 020 Para el singleton se crea una instancia estática
         /// del objeto o clase que queremos referenciar.
         /// </summary>
         private static MainViewModel instance;
@@ -35,6 +41,7 @@
             }
             return instance;
         }
-        #endregion
+
+        #endregion Singleton
     }
 }
