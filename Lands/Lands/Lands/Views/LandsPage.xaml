@@ -1,49 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Lands.Views.LandsPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Lands">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Lands.Views.LandsPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Lands">
     <ContentPage.Content>
         <StackLayout
-            BindingContext="{Binding Lands}"
-            Padding="5">
-            <ListView 
+            BindingContext="{Binding Lands}">
+            <SearchBar
                 BackgroundColor="Silver"
-                HasUnevenRows="true" 
+                Placeholder="Search..."
+                Text="{Binding Filter, Mode=TwoWay}"
+                SearchCommand="{Binding SearchCommand}">
+            </SearchBar>
+            <ListView
+                BackgroundColor="Silver"
+                HasUnevenRows="true"
                 IsPullToRefreshEnabled="true"
-                ItemsSource="{Binding Lands}"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-                RefreshCommand="{Binding RefreshCommand}"
+                ItemsSource="{Binding Lands}"
                 SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout 
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="true"
+                                Margin="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
                                     Grid.Column="0"
                                     VerticalOptions="Center">
-                                    <Label 
+                                        <Label
                                         FontAttributes="Bold"
-                                        FontSize="Medium" 
+                                        FontSize="Medium"
                                         Text="{Binding Name}"
                                         TextColor="Black">
-                                    </Label>
-                                    <Label 
+                                        </Label>
+                                        <Label
                                         Text="{Binding Capital}"
                                         TextColor="Black">
-                                    </Label>
-                                </StackLayout>
-                                <Image 
+                                        </Label>
+                                    </StackLayout>
+                                    <Image
                                     Grid.Column="1"
-                                    HorizontalOptions="End" 
+                                    HorizontalOptions="End"
                                     Source="ic_chevron_right">
-                                </Image>
-                            </Grid>
+                                    </Image>
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

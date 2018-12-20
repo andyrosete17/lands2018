@@ -6,7 +6,8 @@ namespace Lands.Models
     public class TokenResponse
     {
         #region Properties
-     [JsonProperty(PropertyName ="access_token")]
+
+        [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }
 
         [JsonProperty(PropertyName = "token_type")]
@@ -26,6 +27,7 @@ namespace Lands.Models
 
         [JsonProperty(PropertyName = "error_description")]
         public string ErrorDescription { get; set; }
-        #endregion
+
+        #endregion Properties
     }
 }

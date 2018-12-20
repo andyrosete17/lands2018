@@ -5,6 +5,7 @@
     using Services;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -12,7 +13,7 @@
     {
         #region Services
 
-        private ApiService apiService;
+        private readonly ApiService apiService;
 
         #endregion Services
 
@@ -20,6 +21,8 @@
 
         private ObservableCollection<Land> lands;
         private bool isRefreshing;
+        private string filter;
+        private List<Land> landsList;
 
         #endregion Attributes
 
@@ -27,14 +30,24 @@
 
         public ObservableCollection<Land> Lands
         {
-            get { return this.lands; }
-            set { SetValue(ref this.lands, value); }
+            get => this.lands;
+            set => SetValue(ref this.lands, value);
         }
 
         public bool IsRefreshing
         {
-            get { return this.isRefreshing; }
-            set { SetValue(ref this.isRefreshing, value); }
+            get => this.isRefreshing;
+            set => SetValue(ref this.isRefreshing, value);
+        }
+
+        public string Filter
+        {
+            get => this.filter;
+            set
+            {
+                SetValue(ref this.filter, value);
+                this.Search();
+            }
         }
 
         #endregion Properties
@@ -67,7 +80,7 @@
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
-            var response = await this.apiService.GetList<Land>(
+            var response = await apiService.GetList<Land>(
                 "http://restcountries.eu",
                 "/rest",
                 "/v2/all");
@@ -82,19 +95,34 @@
                 await Application.Current.MainPage.Navigation.PopAsync();
             }
 
-            var list = (List<Land>)response.Result;
-            this.Lands = new ObservableCollection<Land>(list);
+            this.landsList = (List<Land>)response.Result;
+            this.Lands = new ObservableCollection<Land>(landsList);
             this.IsRefreshing = false;
+        }
+
+        private void Search()
+        {
+            if (string.IsNullOrEmpty(this.Filter))
+            {
+                this.Lands = new ObservableCollection<Land>(
+                    this.landsList);
+            }
+            else
+            {
+                this.Lands = new ObservableCollection<Land>(
+                    this.landsList
+                    .Where(x => x.Name.ToLower().Contains(this.Filter.ToLower())
+                        || x.Capital.ToLower().Contains(this.Filter.ToLower())));
+            }
         }
 
         #endregion Methods
 
         #region Commands
 
-        public ICommand RefreshCommand
-        {
-            get { return new RelayCommand(LoadLands);}
-        }
+        public ICommand RefreshCommand => new RelayCommand(LoadLands);
+
+        public ICommand SearchCommand => new RelayCommand(Search);
 
         #endregion Commands
     }

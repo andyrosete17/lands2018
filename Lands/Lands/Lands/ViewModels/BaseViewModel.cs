@@ -13,7 +13,7 @@ namespace Lands.ViewModels
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(propertyName)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected void SetValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
@@ -26,6 +26,5 @@ namespace Lands.ViewModels
             backingField = value;
             OnPropertyChanged(propertyName);
         }
-
     }
 }
