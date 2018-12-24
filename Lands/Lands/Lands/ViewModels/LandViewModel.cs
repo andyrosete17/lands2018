@@ -8,7 +8,7 @@
     {
         #region Attributes
 
-        private ObservableCollection<Border> borders;
+        private ObservableCollection<BorderItemViewModel> borders;
         private ObservableCollection<Currency> currencies;
 
         #endregion Attributes
@@ -21,7 +21,7 @@
             set;
         }
 
-        public ObservableCollection<Border> Borders
+        public ObservableCollection<BorderItemViewModel> Borders
         {
             get => this.borders;
             set => SetValue(ref this.borders, value);
@@ -50,7 +50,7 @@
 
         private void LoadBorders()
         {
-            this.Borders = new ObservableCollection<Border>();
+            this.Borders = new ObservableCollection<BorderItemViewModel>();
             foreach (var border in this.Land.Borders)
             {
                 var land = MainViewModel.GetInstance()
@@ -60,7 +60,7 @@
                 if (land != null)
                 {
                     this.Borders.Add(
-                    new Border
+                    new BorderItemViewModel
                     {
                         Code = land.Alpha3Code,
                         Name = land.Name
@@ -70,7 +70,7 @@
 
             if (!this.Borders.Any())
             {
-                this.Borders.Add(new Border { Name = "This Country has no border" });
+                this.Borders.Add(new BorderItemViewModel { Name = "This Country has no border" });
             }
         }
 
