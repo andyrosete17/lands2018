@@ -23,22 +23,34 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="3*" />
-                                </Grid.ColumnDefinitions>
-                                <Label
+                            <Frame
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToCountry}" />
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
                                     Grid.Column="0"
                                     Text="{Binding Code}"
                                     TextColor="Black">
-                                </Label>
-                                <Label
+                                    </Label>
+                                    <Label
                                     Grid.Column="1"
                                     Text="{Binding Name}"
                                     TextColor="Black">
-                                </Label>
-                            </Grid>
+                                    </Label>
+                                    <Image
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Source="ic_chevron_right">
+                                    </Image>
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -9,6 +9,7 @@
         #region Attributes
 
         private ObservableCollection<Border> borders;
+        private ObservableCollection<Currency> currencies;
 
         #endregion Attributes
 
@@ -26,6 +27,12 @@
             set => SetValue(ref this.borders, value);
         }
 
+        public ObservableCollection<Currency> Currencies
+        {
+            get => this.currencies;
+            set => SetValue(ref this.currencies, value);
+        }
+
         #endregion Properties
 
         #region Constructor
@@ -34,6 +41,7 @@
         {
             this.Land = land;
             this.LoadBorders();
+            this.Currencies = new ObservableCollection<Currency>(this.Land.Currencies);
         }
 
         #endregion Constructor
