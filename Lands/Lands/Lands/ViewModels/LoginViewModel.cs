@@ -4,9 +4,16 @@
     using Lands.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using Services;
 
     public class LoginViewModel : BaseViewModel
     {
+        #region Services
+
+        private readonly ApiService apiService;
+
+        #endregion Services
+
         #region Properties
 
         public bool IsRemembered { get; set; }
@@ -60,7 +67,8 @@
             IsRemembered = true;
             IsEnable = true;
             Email = "andyrosete17@gmail.com";
-            Password = "1234";
+            Password = "123456";
+            this.apiService = new ApiService();
         }
 
         #endregion Constructors
@@ -91,23 +99,53 @@
             IsRunning = true;
             IsEnable = false;
 
-            if (Email != "andyrosete17@gmail.com" ||
-                Password != "1234")
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
             {
                 IsRunning = false;
                 IsEnable = true;
                 await Application.Current.MainPage.DisplayAlert(
-                     "Error",
-                     "Email or password incorrect",
-                     "Accept"
-                     );
-                Password = string.Empty;
+                    "Error",
+                    connection.Message,
+                    "Accept"
+                    );
+                return;
+            }
+            var token = await this.apiService.GetToken(
+                "http://landsapi.somee.com",
+                this.Email,
+                this.Password);
+
+            if (token == null)
+            {
+                IsRunning = false;
+                IsEnable = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Something was wrong, please try again later...",
+                    "Accept"
+                    );
                 return;
             }
 
+            if (string.IsNullOrEmpty(token.AccessToken))
+            {
+                IsRunning = false;
+                IsEnable = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    token.ErrorDescription,
+                    "Accept"
+                    );
+                this.Password = string.Empty;
+                return;
+            }
+            var mainViewModel = MainViewModel.GetInstance();
+
+            mainViewModel.Token = token;
             /// TODO 023 De esta forma antes de pintar la lands page se establece la
             /// LandsViewmodel alineada a la vista.
-            MainViewModel.GetInstance().Lands = new LandsViewModel();
+            mainViewModel.Lands = new LandsViewModel();
 
             await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
 
