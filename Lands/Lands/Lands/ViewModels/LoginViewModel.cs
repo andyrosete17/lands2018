@@ -112,7 +112,7 @@
                 return;
             }
             var token = await this.apiService.GetToken(
-                "http://landsapi.somee.com",
+                "http://landsapi.somee.com/API/",
                 this.Email,
                 this.Password);
 
