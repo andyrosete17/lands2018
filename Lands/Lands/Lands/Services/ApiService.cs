@@ -55,7 +55,7 @@
                     "Token",
                     new StringContent(string.Format(
                         "grant_type=password&username={0}&password={1}",
-                        username,password),
+                        username, password),
                     Encoding.UTF8,
                     "application/x-www-form-urlencoded"));
 
@@ -66,8 +66,8 @@
             }
             catch
             {
-
-                return null;            }
+                return null;
+            }
         }
 
         public async Task<Response> Get<T>(
@@ -448,6 +448,4 @@
             }
         }
     }
-
 }
-
