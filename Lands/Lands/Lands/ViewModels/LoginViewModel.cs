@@ -47,8 +47,11 @@
         #region Attributes
 
         private string email;
+
         private string password;
+
         private bool isRunning;
+
         private bool isEnable;
 
         #endregion Attributes
@@ -56,6 +59,7 @@
         #region Commands
 
         public ICommand LoginCommand => new RelayCommand(Login);
+
         public ICommand RegisterCommand { get; }
 
         #endregion Commands
@@ -112,7 +116,7 @@
                 return;
             }
             var token = await this.apiService.GetToken(
-                "http://landsapi.somee.com/API/",
+                "http://lands.somee.com/API/",
                 this.Email,
                 this.Password);
 
@@ -143,6 +147,7 @@
             var mainViewModel = MainViewModel.GetInstance();
 
             mainViewModel.Token = token;
+
             /// TODO 023 De esta forma antes de pintar la lands page se establece la
             /// LandsViewmodel alineada a la vista.
             mainViewModel.Lands = new LandsViewModel();
