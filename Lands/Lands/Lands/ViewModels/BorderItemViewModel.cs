@@ -1,6 +1,7 @@
 ﻿namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Lands.Helpers;
     using Lands.Models;
     using Lands.Views;
     using System.Linq;
@@ -29,9 +30,9 @@
             else
             {
                 await Application.Current.MainPage.DisplayAlert
-                    ("No Border Found",
-                    "This country has no borders",
-                    "Close");
+                    (Languages.BorderNotFoundError,
+                     Languages.CountryBorderError,
+                     Languages.Accept);
             }
         }
 
