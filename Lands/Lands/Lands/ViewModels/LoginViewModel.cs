@@ -5,6 +5,7 @@
     using System.Windows.Input;
     using Xamarin.Forms;
     using Services;
+    using Lands.Helpers;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -84,18 +85,18 @@
             if (string.IsNullOrEmpty(Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an email",
-                    "Accept"
+                   Languages.Error,
+                    Languages.EmailValidation,
+                    Languages.Accept
                     );
                 return;
             }
             if (string.IsNullOrEmpty(Password))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a password",
-                    "Accept"
+                   Languages.Error,
+                    Languages.PasswordValidation,
+                    Languages.Accept
                     );
                 return;
             }
@@ -109,10 +110,9 @@
                 IsRunning = false;
                 IsEnable = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     connection.Message,
-                    "Accept"
-                    );
+                    Languages.Accept);
                 return;
             }
             var token = await this.apiService.GetToken(
@@ -125,9 +125,9 @@
                 IsRunning = false;
                 IsEnable = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Something was wrong, please try again later...",
-                    "Accept"
+                    Languages.Error,
+                    Languages.GenericErrorValidation,
+                    Languages.Accept
                     );
                 return;
             }
