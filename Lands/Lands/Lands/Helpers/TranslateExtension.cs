@@ -11,11 +11,10 @@
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        private readonly CultureInfo ci;
+        readonly CultureInfo ci;
+        const string ResourceId = "Lands.Resources.Resource";
 
-        private const string ResourceId = "XFML.Resources.Resource";
-
-        private static readonly Lazy<ResourceManager> ResMgr =
+        static readonly Lazy<ResourceManager> ResMgr =
             new Lazy<ResourceManager>(() => new ResourceManager(
                 ResourceId,
                 typeof(TranslateExtension).GetTypeInfo().Assembly));
