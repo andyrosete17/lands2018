@@ -173,4 +173,7 @@
   <data name="PersianLanguage" xml:space="preserve">
     <value>Persian</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
 </root>

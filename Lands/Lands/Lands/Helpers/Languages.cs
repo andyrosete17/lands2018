@@ -137,5 +137,10 @@
         {
             get { return Resource.PersianLanguage; }
         }
+
+        public static string Menu
+        {
+            get { return Resource.Menu; }
+        }
     }
 }

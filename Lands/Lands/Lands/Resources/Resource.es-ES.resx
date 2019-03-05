@@ -192,4 +192,7 @@
   <data name="DutchLanguage" xml:space="preserve">
     <value>Holandés</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
 </root>
