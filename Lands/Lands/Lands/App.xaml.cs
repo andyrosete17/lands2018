@@ -19,7 +19,8 @@ namespace Lands
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            //MainPage = new NavigationPage(new LoginPage());
+            MainPage = new MasterPage();
         }
 
         #endregion Constructors
