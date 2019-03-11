@@ -5,10 +5,14 @@
     xmlns:i18n="clr-namespace:Lands.Helpers"
     x:Class="Lands.Views.MenuPage"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    BackgroundColor="Navy"
+    BackgroundColor="WhiteSmoke"
     Title ="{i18n:Translate Menu}">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            Padding="5,20,5,5">
+            <Image
+                Source="onu"
+                WidthRequest="100" />
             <ListView
                 BackgroundColor="DeepSkyBlue"
                 ItemsSource="{Binding Menus}"
@@ -18,6 +22,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
+                                </Grid.GestureRecognizers>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
