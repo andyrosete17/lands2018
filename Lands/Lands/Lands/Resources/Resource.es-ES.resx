@@ -192,4 +192,16 @@
   <data name="DutchLanguage" xml:space="preserve">
     <value>Holandés</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menú</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Mi Perfil</value>
+  </data>
+  <data name="Statistic" xml:space="preserve">
+    <value>Estadística</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Cerrar Sesión</value>
+  </data>
 </root>

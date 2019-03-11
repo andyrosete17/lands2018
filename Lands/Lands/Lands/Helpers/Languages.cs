@@ -137,5 +137,25 @@
         {
             get { return Resource.PersianLanguage; }
         }
+
+        public static string Menu
+        {
+            get { return Resource.Menu; }
+        }
+
+        public static string MyProfile
+        {
+            get { return Resource.MyProfile; }
+        }
+
+        public static string Statistic
+        {
+            get { return Resource.Statistic; }
+        }
+
+        public static string LogOut
+        {
+            get { return Resource.LogOut; }
+        }
     }
 }

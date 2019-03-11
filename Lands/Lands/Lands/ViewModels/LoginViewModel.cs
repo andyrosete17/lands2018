@@ -152,7 +152,7 @@
             /// LandsViewmodel alineada a la vista.
             mainViewModel.Lands = new LandsViewModel();
 
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+            Application.Current.MainPage = new MasterPage();
 
             IsRunning = false;
             IsEnable = true;
