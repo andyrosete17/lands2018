@@ -146,7 +146,12 @@
             }
             var mainViewModel = MainViewModel.GetInstance();
 
-            mainViewModel.Token = token;
+            //Copiar token para la mainViewModel pero además para la clase settings y así funcionaría el rememberme
+            mainViewModel.Token = token.AccessToken;
+            mainViewModel.TokenType = token.TokenType;
+
+            Settings.Token = token.AccessToken;
+            Settings.TokenType = token.TokenType;
 
             /// TODO 023 De esta forma antes de pintar la lands page se establece la
             /// LandsViewmodel alineada a la vista.

@@ -2,6 +2,9 @@ namespace Lands
 {
     using Lands.Views;
     using Xamarin.Forms;
+    using Helpers;
+    using Lands.ViewModels;
+    using System.Linq;
 
     public partial class App : Application
     {
@@ -18,8 +21,17 @@ namespace Lands
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new LoginPage());
+            if (string.IsNullOrEmpty(Settings.Token))
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.Token = Settings.Token;
+                mainViewModel.TokenType = Settings.TokenType;
+                MainPage = new MasterPage();
+            }
         }
 
         #endregion Constructors
