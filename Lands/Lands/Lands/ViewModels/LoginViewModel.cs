@@ -146,7 +146,7 @@
             }
             var mainViewModel = MainViewModel.GetInstance();
 
-            //Copiar token para la mainViewModel pero además para la clase settings y así funcionaría el rememberme
+            //Copiar token para la mainViewModel pero además para 
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
 

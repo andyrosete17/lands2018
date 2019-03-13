@@ -30,6 +30,7 @@ namespace Lands
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.Token = Settings.Token;
                 mainViewModel.TokenType = Settings.TokenType;
+                mainViewModel.Lands = new LandsViewModel();
                 MainPage = new MasterPage();
             }
         }
