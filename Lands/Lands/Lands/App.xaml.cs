@@ -1,10 +1,9 @@
 namespace Lands
 {
-    using Lands.Views;
-    using Xamarin.Forms;
     using Helpers;
     using Lands.ViewModels;
-    using System.Linq;
+    using Lands.Views;
+    using Xamarin.Forms;
 
     public partial class App : Application
     {

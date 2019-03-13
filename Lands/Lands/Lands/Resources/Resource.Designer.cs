@@ -79,6 +79,15 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borders.
+        /// </summary>
+        public static string Borders {
+            get {
+                return ResourceManager.GetString("Borders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brazilian.
         /// </summary>
         public static string BrazilianLanguage {
@@ -102,6 +111,15 @@ namespace Lands.Resources {
         public static string CroatianLanguage {
             get {
                 return ResourceManager.GetString("CroatianLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
             }
         }
         
@@ -169,6 +187,15 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Something was wrong, please try again later....
         /// </summary>
         public static string GenericErrorValidation {
@@ -201,6 +228,33 @@ namespace Lands.Resources {
         public static string JapaneseLanguage {
             get {
                 return ResourceManager.GetString("JapaneseLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land.
+        /// </summary>
+        public static string Land {
+            get {
+                return ResourceManager.GetString("Land", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lands.
+        /// </summary>
+        public static string Lands {
+            get {
+                return ResourceManager.GetString("Lands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Languages.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
         
@@ -318,6 +372,15 @@ namespace Lands.Resources {
         public static string Statistic {
             get {
                 return ResourceManager.GetString("Statistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translation.
+        /// </summary>
+        public static string Translation {
+            get {
+                return ResourceManager.GetString("Translation", resourceCulture);
             }
         }
     }
