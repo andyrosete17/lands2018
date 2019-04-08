@@ -206,6 +206,11 @@
     <Compile Include="Helpers\FilesHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Migrations\201904081019476_Initial.cs" />
+    <Compile Include="Migrations\201904081019476_Initial.Designer.cs">
+      <DependentUpon>201904081019476_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LocalDataContext.cs" />
@@ -307,6 +312,11 @@
       <Project>{9743dc1f-dce8-4390-8fd8-2d0723e53276}</Project>
       <Name>Lands.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904081019476_Initial.resx">
+      <DependentUpon>201904081019476_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
