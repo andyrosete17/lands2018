@@ -1,5 +1,6 @@
 ﻿namespace Lands.Domain
 {
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -49,5 +50,10 @@
 
         [Display(Name = "User")]
         public string FullName => string.Format("{0} {1}", this.FirstName, this.LastName);
+
+        public int UserTypeId { get; set; }
+
+        [JsonIgnore]
+        public virtual UserType UserType { get; set; }
     }
 }

@@ -204,4 +204,25 @@
   <data name="LogOut" xml:space="preserve">
     <value>Fermer la Session</value>
   </data>
+  <data name="Borders" xml:space="preserve">
+    <value>Frontière</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Devise</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Général</value>
+  </data>
+  <data name="Lands" xml:space="preserve">
+    <value>Terres</value>
+  </data>
+  <data name="Land" xml:space="preserve">
+    <value>Terre</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Langues</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Traduction</value>
+  </data>
 </root>

@@ -157,5 +157,40 @@
         {
             get { return Resource.LogOut; }
         }
+
+        public static string Borders
+        {
+            get { return Resource.Borders; }
+        }
+
+        public static string Currency
+        {
+            get { return Resource.Currency; }
+        }
+
+        public static string General
+        {
+            get { return Resource.General; }
+        }
+
+        public static string Lands
+        {
+            get { return Resource.Lands; }
+        }
+
+        public static string Land
+        {
+            get { return Resource.Land; }
+        }
+        public static string Language
+        {
+            get { return Resource.Language; }
+        }
+
+        public static string Translation
+        {
+            get { return Resource.Translation; }
+        }
+
     }
 }
