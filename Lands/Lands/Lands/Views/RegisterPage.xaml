@@ -4,12 +4,16 @@
              xmlns:i18n ="clr-namespace:Lands.Helpers"
              x:Class="Lands.Views.RegisterPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="{i18n:Translate Register}">
+             Title="{i18n:Translate RegisterTitle}">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView
+            BindingContext="{Binding Register}">
+        <StackLayout
+            Padding="5">
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
