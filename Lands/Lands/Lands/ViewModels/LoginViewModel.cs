@@ -6,6 +6,7 @@
     using Xamarin.Forms;
     using Services;
     using Lands.Helpers;
+    using System;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -61,7 +62,9 @@
 
         public ICommand LoginCommand => new RelayCommand(Login);
 
-        public ICommand RegisterCommand { get; }
+        public ICommand RegisterCommand => new RelayCommand(Register);
+
+       
 
         #endregion Commands
 
@@ -169,6 +172,10 @@
             Password = string.Empty;
         }
 
+        private void Register()
+        {
+            throw new NotImplementedException();
+        }
         #endregion CommandsImplementation
     }
 }
