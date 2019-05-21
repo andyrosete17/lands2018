@@ -80,7 +80,7 @@
                                  connection.Message,
                                  Languages.Accept);
 
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await App.Navigator.PopAsync();
                 return;
             }
             var response = await apiService.GetList<Land>(
@@ -95,7 +95,7 @@
                     Languages.Error,
                     response.Message,
                     Languages.Accept);
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await App.Navigator.PopAsync();
             }
 
             MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;
