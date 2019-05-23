@@ -122,10 +122,10 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Remember in this device</value>
   </data>
-  <data name="EmailPlaceholder" xml:space="preserve">
+  <data name="EmailPlaceHolder" xml:space="preserve">
     <value>Enter your email...</value>
   </data>
-  <data name="PasswordPlaceholder" xml:space="preserve">
+  <data name="PasswordPlaceHolder" xml:space="preserve">
     <value>Enter your password...</value>
   </data>
   <data name="Password" xml:space="preserve">

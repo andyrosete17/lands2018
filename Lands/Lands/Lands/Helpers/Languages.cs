@@ -53,14 +53,14 @@
             get { return Resource.RememberMe; }
         }
 
-        public static string EmailPlaceholder
+        public static string EmailPlaceHolder
         {
-            get { return Resource.EmailPlaceholder; }
+            get { return Resource.EmailPlaceHolder; }
         }
 
-        public static string PasswordPlaceholder
+        public static string PasswordPlaceHolder
         {
-            get { return Resource.PasswordPlaceholder; }
+            get { return Resource.PasswordPlaceHolder; }
         }
 
         public static string Password

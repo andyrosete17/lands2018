@@ -252,9 +252,9 @@ namespace Lands.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Enter your email....
         /// </summary>
-        public static string EmailPlaceholder {
+        public static string EmailPlaceHolder {
             get {
-                return ResourceManager.GetString("EmailPlaceholder", resourceCulture);
+                return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
             }
         }
         
@@ -540,9 +540,9 @@ namespace Lands.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Enter your password....
         /// </summary>
-        public static string PasswordPlaceholder {
+        public static string PasswordPlaceHolder {
             get {
-                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+                return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
             }
         }
         

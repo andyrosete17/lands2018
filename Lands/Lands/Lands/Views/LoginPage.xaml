@@ -34,7 +34,7 @@
                         Grid.Column="1"
                         Keyboard="Email"
                         Text="{Binding Email, Mode=TwoWay}"
-                        Placeholder="{i18n:Translate EmailPlaceholder}">
+                        Placeholder="{i18n:Translate EmailPlaceHolder}">
                     </Entry>
                     <Label
                         Grid.Row="1"
@@ -45,7 +45,7 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="{i18n:Translate PasswordPlaceholder}"
+                        Placeholder="{i18n:Translate PasswordPlaceHolder}"
                         Text="{Binding Password, Mode=TwoWay}">
                     </Entry>
                 </Grid>

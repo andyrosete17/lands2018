@@ -141,10 +141,10 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Recuerdar en este dispositivo</value>
   </data>
-  <data name="EmailPlaceholder" xml:space="preserve">
+  <data name="EmailPlaceHolder" xml:space="preserve">
     <value>Introduzca su correo...</value>
   </data>
-  <data name="PasswordPlaceholder" xml:space="preserve">
+  <data name="PasswordPlaceHolder" xml:space="preserve">
     <value>Introduzca su contraseña...</value>
   </data>
   <data name="Password" xml:space="preserve">
