@@ -118,8 +118,10 @@
                     Languages.Accept);
                 return;
             }
+
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
             var token = await this.apiService.GetToken(
-                "http://lands.somee.com/API/",
+                apiSecurity,
                 this.Email,
                 this.Password);
 

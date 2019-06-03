@@ -85,6 +85,13 @@
 
             this.IsEnabled = true;
             this.ImageSource = "no_image";
+
+            this.Confirm = "123456";
+            this.Email = "andyrosete17@gmail.com";
+            this.FirstName = "Andy";
+            this.LastName = "Rosete";
+            this.Password = "123456";
+            this.Telephone = "675045854";
         }
         #endregion
 
@@ -213,10 +220,12 @@
             };
 
             var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+            var apiSection = Application.Current.Resources["APISection"].ToString();
+            var apiUsers = Application.Current.Resources["APIUsers"].ToString();
             var response = await this.apiService.Post(
                 apiSecurity,
-                "/api",
-                "/Users",
+                apiSection,
+                apiUsers,
                 user);
 
             if (!response.IsSuccess)
@@ -250,6 +259,7 @@
 
         private async void ChangeImage()
         {
+            //Initialize camera library
             await CrossMedia.Current.Initialize();
 
             if (CrossMedia.Current.IsCameraAvailable &&
