@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Lands.API.Helpers;
 using Lands.Domain;
+using Newtonsoft.Json.Linq;
 
 namespace Lands.API.Controllers
 {
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         private DataContext db = new DataContext();
@@ -30,6 +30,30 @@ namespace Lands.API.Controllers
         public async Task<IHttpActionResult> GetUser(int id)
         {
             User user = await db.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpPost]
+        [Route("GetUserByEmail")]
+        public async Task<IHttpActionResult> GetUserByEmail(JObject form)
+        {
+            var email = string.Empty;
+            dynamic jsonObject = form;
+            try
+            {
+                email = jsonObject.Email.Value;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            User user = await db.Users.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
             if (user == null)
             {
                 return NotFound();
@@ -82,7 +106,7 @@ namespace Lands.API.Controllers
             //    return BadRequest(ModelState);
             //}
 
-            if (user.ImageArray != null && user.ImageArray.Length>0)
+            if (user.ImageArray != null && user.ImageArray.Length > 0)
             {
                 var stream = new MemoryStream(user.ImageArray);
                 var guid = Guid.NewGuid().ToString();
@@ -103,7 +127,7 @@ namespace Lands.API.Controllers
 
 
             return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
-        }      
+        }
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]

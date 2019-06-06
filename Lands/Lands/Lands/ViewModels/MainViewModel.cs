@@ -1,5 +1,6 @@
 ﻿namespace Lands.ViewModels
 {
+    using Lands.Domain;
     using Lands.Helpers;
     using Lands.Models;
     using System;
@@ -15,6 +16,8 @@
         //To get token
         public string Token { get; set; }
         public string TokenType { get; set; }
+
+        public User User{ get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menus{ get; set; }
 

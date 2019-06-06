@@ -222,6 +222,7 @@
             var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
             var apiSection = Application.Current.Resources["APISection"].ToString();
             var apiUsers = Application.Current.Resources["APIUsers"].ToString();
+
             var response = await this.apiService.Post(
                 apiSecurity,
                 apiSection,
