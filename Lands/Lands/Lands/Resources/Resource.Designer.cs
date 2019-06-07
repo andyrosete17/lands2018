@@ -97,6 +97,96 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password was changed successfully..
+        /// </summary>
+        public static string ChagePasswordConfirm {
+            get {
+                return ResourceManager.GetString("ChagePasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Touch the image to chage it.
+        /// </summary>
+        public static string ChangeImage {
+            get {
+                return ResourceManager.GetString("ChangeImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string ConfirmLabel {
+            get {
+                return ResourceManager.GetString("ConfirmLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the password confirm....
+        /// </summary>
+        public static string ConfirmPlaceHolder {
+            get {
+                return ResourceManager.GetString("ConfirmPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a confirm..
+        /// </summary>
+        public static string ConfirmValidation {
+            get {
+                return ResourceManager.GetString("ConfirmValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password and confirm does not match..
+        /// </summary>
+        public static string ConfirmValidation2 {
+            get {
+                return ResourceManager.GetString("ConfirmValidation2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please turn on your internet settings..
+        /// </summary>
+        public static string ConnectionError1 {
+            get {
+                return ResourceManager.GetString("ConnectionError1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check you internet connection..
+        /// </summary>
+        public static string ConnectionError2 {
+            get {
+                return ResourceManager.GetString("ConnectionError2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This Country has no border.
         /// </summary>
         public static string CountryBorderError {
@@ -124,6 +214,24 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Password.
+        /// </summary>
+        public static string CurrentPassword {
+            get {
+                return ResourceManager.GetString("CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your current password....
+        /// </summary>
+        public static string CurrentPasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("CurrentPasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dutch.
         /// </summary>
         public static string DutchLanguage {
@@ -144,9 +252,9 @@ namespace Lands.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Enter your email....
         /// </summary>
-        public static string EmailPlaceholder {
+        public static string EmailPlaceHolder {
             get {
-                return ResourceManager.GetString("EmailPlaceholder", resourceCulture);
+                return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
             }
         }
         
@@ -160,11 +268,56 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must enter a valid email..
+        /// </summary>
+        public static string EmailValidation2 {
+            get {
+                return ResourceManager.GetString("EmailValidation2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password can&apos;t be changed, please try latter..
+        /// </summary>
+        public static string ErrorChangingPassword {
+            get {
+                return ResourceManager.GetString("ErrorChangingPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string FirstNameLabel {
+            get {
+                return ResourceManager.GetString("FirstNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the first name....
+        /// </summary>
+        public static string FirstNamePlaceHolder {
+            get {
+                return ResourceManager.GetString("FirstNamePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a first name..
+        /// </summary>
+        public static string FirstNameValidation {
+            get {
+                return ResourceManager.GetString("FirstNameValidation", resourceCulture);
             }
         }
         
@@ -183,6 +336,24 @@ namespace Lands.Resources {
         public static string FrenchLanguage {
             get {
                 return ResourceManager.GetString("FrenchLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From camera.
+        /// </summary>
+        public static string FromCamera {
+            get {
+                return ResourceManager.GetString("FromCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From gallery.
+        /// </summary>
+        public static string FromGallery {
+            get {
+                return ResourceManager.GetString("FromGallery", resourceCulture);
             }
         }
         
@@ -259,11 +430,47 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string LastNameLabel {
+            get {
+                return ResourceManager.GetString("LastNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the last name....
+        /// </summary>
+        public static string LastNamePlaceHolder {
+            get {
+                return ResourceManager.GetString("LastNamePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a last name..
+        /// </summary>
+        public static string LastNameValidation {
+            get {
+                return ResourceManager.GetString("LastNameValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email or password incorrect..
+        /// </summary>
+        public static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
             }
         }
         
@@ -295,6 +502,24 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Password.
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the new password....
+        /// </summary>
+        public static string NewPasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("NewPasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -304,11 +529,20 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The current password is incorrect.
+        /// </summary>
+        public static string PasswordError {
+            get {
+                return ResourceManager.GetString("PasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter your password....
         /// </summary>
-        public static string PasswordPlaceholder {
+        public static string PasswordPlaceHolder {
             get {
-                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+                return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
             }
         }
         
@@ -322,11 +556,47 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password must have at least seix (6) characters..
+        /// </summary>
+        public static string PasswordValidation2 {
+            get {
+                return ResourceManager.GetString("PasswordValidation2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Persian.
         /// </summary>
         public static string PersianLanguage {
             get {
                 return ResourceManager.GetString("PersianLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string PhoneLabel {
+            get {
+                return ResourceManager.GetString("PhoneLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the phone....
+        /// </summary>
+        public static string PhonePlaceHolder {
+            get {
+                return ResourceManager.GetString("PhonePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a phone..
+        /// </summary>
+        public static string PhoneValidation {
+            get {
+                return ResourceManager.GetString("PhoneValidation", resourceCulture);
             }
         }
         
@@ -349,11 +619,38 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register New User.
+        /// </summary>
+        public static string RegisterTitle {
+            get {
+                return ResourceManager.GetString("RegisterTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember in this device.
         /// </summary>
         public static string RememberMe {
             get {
                 return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Where do you want to take the image?.
+        /// </summary>
+        public static string SourceImageQuestion {
+            get {
+                return ResourceManager.GetString("SourceImageQuestion", resourceCulture);
             }
         }
         
@@ -381,6 +678,15 @@ namespace Lands.Resources {
         public static string Translation {
             get {
                 return ResourceManager.GetString("Translation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user was create, now you can login with this email and password..
+        /// </summary>
+        public static string UserRegisteredMessage {
+            get {
+                return ResourceManager.GetString("UserRegisteredMessage", resourceCulture);
             }
         }
     }

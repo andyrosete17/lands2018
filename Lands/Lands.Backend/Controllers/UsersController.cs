@@ -58,7 +58,7 @@ namespace Lands.Backend.Controllers
         //    return View(view);
         //}
 
-        private User ToUser(UserView view)
+        private User ToUser(Backend.Models.UserView view)
         {
             return new User
             {

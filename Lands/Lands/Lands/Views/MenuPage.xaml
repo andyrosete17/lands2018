@@ -14,6 +14,11 @@
             <Image
                 Source="onu"
                 WidthRequest="100" />
+            <Label
+                Text="{Binding User.FullName, StringFormat= 'Hola: {0}'}"
+                TextColor="LightBlue"
+                FontSize="Large"
+                FontAttributes="Bold"/>
             <ListView
                 BackgroundColor="DeepSkyBlue"
                 ItemsSource="{Binding Menus}"

@@ -4,8 +4,20 @@
              xmlns:infra ="clr-namespace:Lands.Infrastructure"
              x:Class="Lands.App">
     <Application.Resources>
+            <!--Application resource dictionary-->
         <ResourceDictionary>
+            
+            <!--Parameters-->
             <infra:InstanceLocator x:Key="Locator" />
+            
+            <!--Parameters-->
+            <x:String x:Key="APILands">http://restcountries.eu</x:String>
+            <x:String x:Key="APISecurity">http://lands.somee.com/API/</x:String>
+            <x:String x:Key="APISection">api/</x:String>
+            <x:String x:Key="APIUsers">Users</x:String>
+            <x:String x:Key="APILandsRest">/rest</x:String>
+            <x:String x:Key="APILandsVersion">/v2/all</x:String>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,5 +1,6 @@
 ﻿namespace Lands.ViewModels
 {
+    using Lands.Domain;
     using Lands.Helpers;
     using Lands.Models;
     using System;
@@ -16,6 +17,8 @@
         public string Token { get; set; }
         public string TokenType { get; set; }
 
+        public User User{ get; set; }
+
         public ObservableCollection<MenuItemViewModel> Menus{ get; set; }
 
         #endregion Properties
@@ -25,6 +28,7 @@
         public LoginViewModel Login { get; set; }
         public LandsViewModel Lands { get; set; }
         public LandViewModel Land { get; set; }
+        public RegisterViewModel Register { get; set; }
 
         #endregion ViewModels
 

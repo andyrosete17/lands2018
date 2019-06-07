@@ -80,13 +80,17 @@
                                  connection.Message,
                                  Languages.Accept);
 
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await App.Navigator.PopAsync();
                 return;
             }
+
+            var apiLands = Application.Current.Resources["APILands"].ToString();
+            var apiLandsRest = Application.Current.Resources["APILandsRest"].ToString();
+            var apiLandsVersion = Application.Current.Resources["APILandsVersion"].ToString();
             var response = await apiService.GetList<Land>(
-                "http://restcountries.eu",
-                "/rest",
-                "/v2/all");
+                apiLands,
+                apiLandsRest,
+                apiLandsVersion);
 
             if (!response.IsSuccess)
             {
@@ -95,7 +99,7 @@
                     Languages.Error,
                     response.Message,
                     Languages.Accept);
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await App.Navigator.PopAsync();
             }
 
             MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;

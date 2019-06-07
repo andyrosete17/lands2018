@@ -6,6 +6,7 @@
     using Xamarin.Forms;
     using Services;
     using Lands.Helpers;
+    using System;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -61,7 +62,9 @@
 
         public ICommand LoginCommand => new RelayCommand(Login);
 
-        public ICommand RegisterCommand { get; }
+        public ICommand RegisterCommand => new RelayCommand(Register);
+
+       
 
         #endregion Commands
 
@@ -115,8 +118,10 @@
                     Languages.Accept);
                 return;
             }
+
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
             var token = await this.apiService.GetToken(
-                "http://lands.somee.com/API/",
+                apiSecurity,
                 this.Email,
                 this.Password);
 
@@ -144,11 +149,22 @@
                 this.Password = string.Empty;
                 return;
             }
+
+            var user = await this.apiService.GetUserByEmail(
+                apiSecurity, 
+                "api", 
+                "/Users/GetUserByEmail", 
+                token.TokenType, 
+                token.AccessToken, 
+                this.Email);
+
+
             var mainViewModel = MainViewModel.GetInstance();
 
             //Copiar token para la mainViewModel pero además para 
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
+            mainViewModel.User = user;
 
             if (this.IsRemembered)
             {
@@ -169,6 +185,11 @@
             Password = string.Empty;
         }
 
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+        }
         #endregion CommandsImplementation
     }
 }

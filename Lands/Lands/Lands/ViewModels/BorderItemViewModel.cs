@@ -24,7 +24,7 @@
             if (Land != null)
             {
                 MainViewModel.GetInstance().Land = new LandViewModel(Land);
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await App.Navigator.PopAsync();
                 await App.Navigator.PushAsync(new LandTabbedPage());
             }
             else
