@@ -28,7 +28,7 @@ namespace Lands
             }
             else
             {
-                //Cuando hace el login se esta pasadon el tokemn que esta almacenado en memoria, también hay que recuperar el usuario de la base de datos de
+                //Cuando hace el login se esta pasadon el tokemn que esta almacenado en memoria, tambiÃ©n hay que recuperar el usuario de la base de datos de
                 //SQLite
                 var dataService = new DataService();
                 var user = dataService.First<UserLocal>(false);
@@ -36,7 +36,9 @@ namespace Lands
                 mainViewModel.Token = Settings.Token;
                 mainViewModel.TokenType = Settings.TokenType;
                 mainViewModel.Lands = new LandsViewModel();
+
                 mainViewModel.User = user.Result;
+
                 MainPage = new MasterPage();
             }
         }

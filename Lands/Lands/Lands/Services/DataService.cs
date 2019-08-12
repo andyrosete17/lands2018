@@ -21,6 +21,7 @@
                 foreach (var oldRecord in oldRecords)
                 {
                     await this.sqlLiteService.DeleteAsync(oldRecord);
+
                 }
 
                 return true;
@@ -45,6 +46,7 @@
                 await this.sqlLiteService.Insert(model);
 
                 return model;
+
             }
             catch (Exception ex)
             {
@@ -68,6 +70,7 @@
                 }
 
                 return model;
+
             }
             catch (Exception ex)
             {
