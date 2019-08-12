@@ -3,21 +3,24 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Helpers;
+    using System.Threading.Tasks;
 
     public class DataService
     {
-        public bool DeleteAll<T>() where T : class
+        private readonly SqlLiteService sqlLiteService;
+        public DataService()
+        {
+            this.sqlLiteService = new SqlLiteService();
+        }
+        public async Task<bool> DeleteAll<T>() where T : new()
         {
             try
             {
-                using (var da = new DataAccess())
+                var oldRecords = this.sqlLiteService.GetAll<T>(false) as IEnumerable<T>;
+
+                foreach (var oldRecord in oldRecords)
                 {
-                    var oldRecords = da.GetList<T>(false);
-                    foreach (var oldRecord in oldRecords)
-                    {
-                        da.Delete(oldRecord);
-                    }
+                    await this.sqlLiteService.DeleteAsync(oldRecord);
                 }
 
                 return true;
@@ -29,22 +32,19 @@
             }
         }
 
-        public T DeleteAllAndInsert<T>(T model) where T : class
+        public async Task<T> DeleteAllAndInsert<T>(T model) where T : new()
         {
             try
             {
-                using (var da = new DataAccess())
+                var oldRecords = this.sqlLiteService.GetAll<T>(false) as IEnumerable<T>;
+                foreach (var oldRecord in oldRecords)
                 {
-                    var oldRecords = da.GetList<T>(false);
-                    foreach (var oldRecord in oldRecords)
-                    {
-                        da.Delete(oldRecord);
-                    }
-
-                    da.Insert(model);
-
-                    return model;
+                    await this.sqlLiteService.DeleteAsync(oldRecord);
                 }
+
+                await this.sqlLiteService.Insert(model);
+
+                return model;
             }
             catch (Exception ex)
             {
@@ -53,24 +53,21 @@
             }
         }
 
-        public T InsertOrUpdate<T>(T model) where T : class
+        public async Task<T> InsertOrUpdate<T>(T model) where T : new()
         {
             try
             {
-                using (var da = new DataAccess())
+                var oldRecord = await this.sqlLiteService.Find<T>(model.GetHashCode(), false);
+                if (oldRecord != null)
                 {
-                    var oldRecord = da.Find<T>(model.GetHashCode(), false);
-                    if (oldRecord != null)
-                    {
-                        da.Update(model);
-                    }
-                    else
-                    {
-                        da.Insert(model);
-                    }
-
-                    return model;
+                    await this.sqlLiteService.Update(model);
                 }
+                else
+                {
+                    await this.sqlLiteService.Insert(model);
+                }
+
+                return model;
             }
             catch (Exception ex)
             {
@@ -79,63 +76,44 @@
             }
         }
 
-        public T Insert<T>(T model)
+        public async Task<T> Insert<T>(T model)
         {
-            using (var da = new DataAccess())
-            {
-                da.Insert(model);
-                return model;
-            }
+            await this.sqlLiteService.Insert(model);
+            return model;
         }
 
-        public T Find<T>(int pk, bool withChildren) where T : class
+        public async Task<T> Find<T>(int pk, bool withChildren) where T : new()
         {
-            using (var da = new DataAccess())
-            {
-                return da.Find<T>(pk, withChildren);
-            }
+            return await this.sqlLiteService.Find<T>(pk, withChildren);
         }
 
-        public T First<T>(bool withChildren) where T : class
+        public async Task<T> First<T>(bool withChildren) where T : new()
         {
-            using (var da = new DataAccess())
-            {
-                return da.GetList<T>(withChildren).FirstOrDefault();
-            }
+            var oldRecords = await this.sqlLiteService.GetAll<T>(withChildren) as IEnumerable<T>;
+            return oldRecords.FirstOrDefault();
         }
 
-        public List<T> Get<T>(bool withChildren) where T : class
+        public async Task<List<T>> Get<T>(bool withChildren) where T : new()
         {
-            using (var da = new DataAccess())
-            {
-                return da.GetList<T>(withChildren).ToList();
-            }
+            var oldRecords = await this.sqlLiteService.GetAll<T>(withChildren) as IEnumerable<T>;
+            return oldRecords.ToList();
         }
 
-        public void Update<T>(T model)
+        public async void Update<T>(T model)
         {
-            using (var da = new DataAccess())
-            {
-                da.Update(model);
-            }
+            await this.sqlLiteService.Update(model);
         }
 
-        public void Delete<T>(T model)
+        public async void Delete<T>(T model)
         {
-            using (var da = new DataAccess())
-            {
-                da.Delete(model);
-            }
+            await this.sqlLiteService.DeleteAsync(model);
         }
 
-        public void Save<T>(List<T> list) where T : class
+        public async void Save<T>(List<T> list) where T : new()
         {
-            using (var da = new DataAccess())
+            foreach (var record in list)
             {
-                foreach (var record in list)
-                {
-                    InsertOrUpdate(record);
-                }
+                await InsertOrUpdate(record);
             }
         }
     }
