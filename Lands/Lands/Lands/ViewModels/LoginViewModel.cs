@@ -4,9 +4,18 @@
     using Lands.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using Services;
+    using Lands.Helpers;
+    using System;
 
     public class LoginViewModel : BaseViewModel
     {
+        #region Services
+
+        private readonly ApiService apiService;
+
+        #endregion Services
+
         #region Properties
 
         public bool IsRemembered { get; set; }
@@ -40,8 +49,11 @@
         #region Attributes
 
         private string email;
+
         private string password;
+
         private bool isRunning;
+
         private bool isEnable;
 
         #endregion Attributes
@@ -49,7 +61,10 @@
         #region Commands
 
         public ICommand LoginCommand => new RelayCommand(Login);
-        public ICommand RegisterCommand { get; }
+
+        public ICommand RegisterCommand => new RelayCommand(Register);
+
+       
 
         #endregion Commands
 
@@ -60,7 +75,8 @@
             IsRemembered = true;
             IsEnable = true;
             Email = "andyrosete17@gmail.com";
-            Password = "1234";
+            Password = "123456";
+            this.apiService = new ApiService();
         }
 
         #endregion Constructors
@@ -72,18 +88,18 @@
             if (string.IsNullOrEmpty(Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an email",
-                    "Accept"
+                   Languages.Error,
+                    Languages.EmailValidation,
+                    Languages.Accept
                     );
                 return;
             }
             if (string.IsNullOrEmpty(Password))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a password",
-                    "Accept"
+                   Languages.Error,
+                    Languages.PasswordValidation,
+                    Languages.Accept
                     );
                 return;
             }
@@ -91,25 +107,76 @@
             IsRunning = true;
             IsEnable = false;
 
-            if (Email != "andyrosete17@gmail.com" ||
-                Password != "1234")
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
             {
                 IsRunning = false;
                 IsEnable = true;
                 await Application.Current.MainPage.DisplayAlert(
-                     "Error",
-                     "Email or password incorrect",
-                     "Accept"
-                     );
-                Password = string.Empty;
+                    Languages.Error,
+                    connection.Message,
+                    Languages.Accept);
                 return;
+            }
+
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+            var token = await this.apiService.GetToken(
+                apiSecurity,
+                this.Email,
+                this.Password);
+
+            if (token == null)
+            {
+                IsRunning = false;
+                IsEnable = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.GenericErrorValidation,
+                    Languages.Accept
+                    );
+                return;
+            }
+
+            if (string.IsNullOrEmpty(token.AccessToken))
+            {
+                IsRunning = false;
+                IsEnable = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    token.ErrorDescription,
+                    "Accept"
+                    );
+                this.Password = string.Empty;
+                return;
+            }
+
+            var user = await this.apiService.GetUserByEmail(
+                apiSecurity, 
+                "api", 
+                "/Users/GetUserByEmail", 
+                token.TokenType, 
+                token.AccessToken, 
+                this.Email);
+
+
+            var mainViewModel = MainViewModel.GetInstance();
+
+            //Copiar token para la mainViewModel pero además para 
+            mainViewModel.Token = token.AccessToken;
+            mainViewModel.TokenType = token.TokenType;
+            mainViewModel.User = user;
+
+            if (this.IsRemembered)
+            {
+                Settings.Token = token.AccessToken;
+                Settings.TokenType = token.TokenType; 
             }
 
             /// TODO 023 De esta forma antes de pintar la lands page se establece la
             /// LandsViewmodel alineada a la vista.
-            MainViewModel.GetInstance().Lands = new LandsViewModel();
+            mainViewModel.Lands = new LandsViewModel();
 
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+            Application.Current.MainPage = new MasterPage();
 
             IsRunning = false;
             IsEnable = true;
@@ -118,6 +185,11 @@
             Password = string.Empty;
         }
 
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+        }
         #endregion CommandsImplementation
     }
 }

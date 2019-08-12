@@ -1,17 +1,37 @@
 namespace Lands
 {
+    using Helpers;
+    using Lands.ViewModels;
     using Lands.Views;
     using Xamarin.Forms;
 
     public partial class App : Application
     {
+        #region Properties
+        public static NavigationPage Navigator
+        {
+            get;
+            internal set;
+        } 
+        #endregion
+
         #region Constructors
 
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new LoginPage());
+            if (string.IsNullOrEmpty(Settings.Token))
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.Token = Settings.Token;
+                mainViewModel.TokenType = Settings.TokenType;
+                mainViewModel.Lands = new LandsViewModel();
+                MainPage = new MasterPage();
+            }
         }
 
         #endregion Constructors

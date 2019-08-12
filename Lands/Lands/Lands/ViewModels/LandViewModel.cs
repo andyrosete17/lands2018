@@ -9,7 +9,9 @@
         #region Attributes
 
         private ObservableCollection<BorderItemViewModel> borders;
+
         private ObservableCollection<Currency> currencies;
+
         private ObservableCollection<Language> languages;
 
         #endregion Attributes
@@ -78,7 +80,7 @@
 
             if (!this.Borders.Any())
             {
-                this.Borders.Add(new BorderItemViewModel { Name = "This Country has no border" });
+                this.Borders.Add(new BorderItemViewModel { Name = Helpers.Languages.CountryBorderError });
             }
         }
 

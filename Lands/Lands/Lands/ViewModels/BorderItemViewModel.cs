@@ -1,6 +1,7 @@
 ﻿namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Lands.Helpers;
     using Lands.Models;
     using Lands.Views;
     using System.Linq;
@@ -23,15 +24,15 @@
             if (Land != null)
             {
                 MainViewModel.GetInstance().Land = new LandViewModel(Land);
-                await Application.Current.MainPage.Navigation.PopAsync();
-                await Application.Current.MainPage.Navigation.PushAsync(new LandTabbedPage());
+                await App.Navigator.PopAsync();
+                await App.Navigator.PushAsync(new LandTabbedPage());
             }
             else
             {
                 await Application.Current.MainPage.DisplayAlert
-                    ("No Border Found",
-                    "This country has no borders",
-                    "Close");
+                    (Languages.BorderNotFoundError,
+                     Languages.CountryBorderError,
+                     Languages.Accept);
             }
         }
 
