@@ -7,12 +7,15 @@
     using Services;
     using Lands.Helpers;
     using System;
+    using System.Linq;
+    using System.Collections.Generic;
 
     public class LoginViewModel : BaseViewModel
     {
         #region Services
 
         private readonly ApiService apiService;
+        private readonly DataService dataService;
 
         #endregion Services
 
@@ -77,6 +80,7 @@
             Email = "andyrosete17@gmail.com";
             Password = "123456";
             this.apiService = new ApiService();
+            this.dataService = new DataService();
         }
 
         #endregion Constructors
@@ -85,6 +89,14 @@
 
         private async void Login()
         {
+
+            List<int> listStringVals = (new int[] { 7, 13, 8, 12, 10, 11, 14 }).ToList();
+            List<int> SortedList = listStringVals.OrderBy(c => c).ToList();
+            List<int> Gaps = Enumerable.Range(SortedList.First(),
+                                              SortedList.Last() - SortedList.First() + 1)
+                                            .Except(SortedList).ToList();
+            var z = Gaps.Select(x => x.ToString()).ToList();
+
             if (string.IsNullOrEmpty(Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -142,9 +154,9 @@
                 IsRunning = false;
                 IsEnable = true;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     token.ErrorDescription,
-                    "Accept"
+                    Languages.Accept
                     );
                 this.Password = string.Empty;
                 return;
@@ -158,18 +170,21 @@
                 token.AccessToken, 
                 this.Email);
 
+            var userLocal = Converter.ToUserLocal(user);
 
             var mainViewModel = MainViewModel.GetInstance();
 
             //Copiar token para la mainViewModel pero además para 
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
-            mainViewModel.User = user;
+            mainViewModel.User = userLocal;
 
             if (this.IsRemembered)
             {
                 Settings.Token = token.AccessToken;
-                Settings.TokenType = token.TokenType; 
+                Settings.TokenType = token.TokenType;
+                //Borramos los datos que haya y se genera el nuevo usuario
+                this.dataService.DeleteAllAndInsert(userLocal);
             }
 
             /// TODO 023 De esta forma antes de pintar la lands page se establece la

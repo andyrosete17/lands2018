@@ -17,7 +17,7 @@
         public string Token { get; set; }
         public string TokenType { get; set; }
 
-        public User User{ get; set; }
+        public UserLocal User{ get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menus{ get; set; }
 
