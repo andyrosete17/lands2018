@@ -17,12 +17,13 @@
             try
             {
                 var oldRecords = this.sqlLiteService.GetAll<T>(false) as IEnumerable<T>;
-
-                foreach (var oldRecord in oldRecords)
+                if (oldRecords != null)
                 {
-                    await this.sqlLiteService.DeleteAsync(oldRecord);
+                    foreach (var oldRecord in oldRecords)
+                    {
+                        await this.sqlLiteService.DeleteAsync(oldRecord);
+                    }
                 }
-
                 return true;
             }
             catch (Exception ex)
@@ -37,14 +38,17 @@
             try
             {
                 var oldRecords = this.sqlLiteService.GetAll<T>(false) as IEnumerable<T>;
-                foreach (var oldRecord in oldRecords)
+                if (oldRecords != null)
                 {
-                    await this.sqlLiteService.DeleteAsync(oldRecord);
+                    foreach (var oldRecord in oldRecords)
+                    {
+                        await this.sqlLiteService.DeleteAsync(oldRecord);
+                    }
                 }
-
                 await this.sqlLiteService.Insert(model);
 
                 return model;
+
             }
             catch (Exception ex)
             {
