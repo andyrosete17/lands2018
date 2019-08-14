@@ -4,6 +4,7 @@ namespace Lands.ViewModels
 
     using GalaSoft.MvvmLight.Command;
     using Lands.Helpers;
+    using Lands.Models;
     using Lands.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -37,6 +38,10 @@ namespace Lands.ViewModels
                 mainViewModel.Token = string.Empty;
                 mainViewModel.TokenType = string.Empty;
                 Application.Current.MainPage = new NavigationPage(new LoginPage());
+                using (var conn = new SQLite.SQLiteConnection(App.root_db))
+                {
+                    conn.DeleteAll<UserLocal>();
+                }
             }
         }
 

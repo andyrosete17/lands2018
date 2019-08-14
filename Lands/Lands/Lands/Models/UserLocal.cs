@@ -1,6 +1,6 @@
 ﻿namespace Lands.Models
 {
-    using SQLite.Net.Attributes;
+    using SQLite;
 
     public class UserLocal
     {
