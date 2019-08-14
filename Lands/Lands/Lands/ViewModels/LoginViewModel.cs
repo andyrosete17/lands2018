@@ -188,6 +188,7 @@
                 using (var conn = new SQLite.SQLiteConnection(App.root_db))
                 {
                     conn.CreateTable<UserLocal>();
+                    conn.DeleteAll<UserLocal>();
                     conn.Insert(userLocal);
                 }
             }

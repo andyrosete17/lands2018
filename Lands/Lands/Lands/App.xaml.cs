@@ -71,6 +71,7 @@ namespace Lands
                 mainViewModel.Token = Settings.Token;
                 mainViewModel.TokenType = Settings.TokenType;
                 mainViewModel.User = user;//sqlite
+                mainViewModel.Lands = new LandsViewModel();
                 this.MainPage = new MasterPage();
             }
         }
