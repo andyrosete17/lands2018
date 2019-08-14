@@ -1,21 +1,20 @@
 ﻿namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Lands.Helpers;
+    using Lands.Models;
     using Lands.Views;
+    using Services;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
-    using Services;
-    using Lands.Helpers;
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
 
     public class LoginViewModel : BaseViewModel
     {
         #region Services
 
         private readonly ApiService apiService;
-        private readonly DataService dataService;
 
         #endregion Services
 
@@ -80,7 +79,7 @@
             Email = "andyrosete17@gmail.com";
             Password = "123456";
             this.apiService = new ApiService();
-            this.dataService = new DataService();
+            //this.dataService = new DataService();
         }
 
         #endregion Constructors
@@ -184,7 +183,13 @@
                 Settings.Token = token.AccessToken;
                 Settings.TokenType = token.TokenType;
                 //Borramos los datos que haya y se genera el nuevo usuario
-                this.dataService.DeleteAllAndInsert(userLocal);
+                //this.dataService.DeleteAllAndInsert(userLocal);
+                //Save Local User in SQLite
+                using (var conn = new SQLite.SQLiteConnection(App.root_db))
+                {
+                    conn.CreateTable<UserLocal>();
+                    conn.Insert(userLocal);
+                }
             }
 
             /// TODO 023 De esta forma antes de pintar la lands page se establece la

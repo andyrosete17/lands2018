@@ -3,6 +3,8 @@
     using FFImageLoading.Forms.Platform;
     using Foundation;
     using ImageCircle.Forms.Plugin.iOS;
+    using System;
+    using System.IO;
     using UIKit;
 
     // The UIApplicationDelegate for the application. This class is responsible for launching the
@@ -20,10 +22,18 @@
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //Set DB root
+            string dbName = "LandsDBLite.db3";
+            string dbBinder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "..", "Library", "Databases");
+            string dbRoot = Path.Combine(dbBinder, dbName);
+
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
             ImageCircleRenderer.Init();
-            LoadApplication(new App());
+
+            //Inicialized builder
+            LoadApplication(new App(dbRoot));
+            //LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
